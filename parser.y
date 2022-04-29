@@ -1,32 +1,40 @@
+/*** Definition section ***/
 %{
     
 %}
 
 %union {
-    int num;
-    char sym;
+    char* sym;
+    char operator;
 }
 
 %token EOL
-%token<num> NUMBER
-%type<num> exp
-%token PLUS
+%token<sym> id
+%token<operator> op
 
+%type<sym> exp
+%type<sym> assignment
+
+
+%left '-' '+'
+%left '*' '/'
 /* rules */
 %%
 
-input:
-| line input
-;
+stm_list:
+    stm EOL
+|   stm_list stm EOL;
 
-line: 
-    exp EOL {printf("%d\n", $1);} 
-|   EOL;
+stm: 
+    assignment
+|   exp;
+
+assignment: 
+    id "=" exp { printf("--valid\n"); };
 
 exp: 
-    NUMBER {$$ = $1;} 
-|   exp PLUS exp {$$ = $1 + $3;}
-;
+    exp op id { printf("--valid\n");}
+|    id { printf("--valid\n"); };
 
 %%
 

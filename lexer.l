@@ -1,4 +1,3 @@
-% option noyywrap
 
 %{
     #include "parser.tab.h"
@@ -8,13 +7,19 @@
 
 %% 
 [0-9]+ {
-    yylval.num = atoi(yytext);
-    return NUMBER;
+    return id;
 }
 
-"+" {
-    return PLUS;
-}
+[a-zA-Z] {return id;}
+
+[a-zA-Z][a-zA-Z0-9]+ {return id;}
+
+'+' {return op;}
+
+'-' {return op;}
+
+'*' {return op;}
+
 
 \n {
     return EOL;
@@ -22,5 +27,7 @@
 
 . {}
 %%
+
+yywrap(){}
 
 

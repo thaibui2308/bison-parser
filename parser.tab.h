@@ -40,8 +40,8 @@
       know about them.  */
    enum yytokentype {
      EOL = 258,
-     NUMBER = 259,
-     PLUS = 260
+     id = 259,
+     op = 260
    };
 #endif
 
@@ -52,10 +52,10 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 5 "parser.y"
+#line 6 "parser.y"
 
-    int num;
-    char sym;
+    char* sym;
+    char operator;
 
 
 
