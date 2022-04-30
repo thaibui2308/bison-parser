@@ -55,12 +55,13 @@ typedef union YYSTYPE
 #line 6 "parser.y"
 
     char* sym;
-    char operator;
+    int fn;
+    double d;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 64 "parser.tab.h"
+#line 65 "parser.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -5,7 +5,8 @@
 
 %union {
     char* sym;
-    char operator;
+    int fn;
+    double d;
 }
 
 %token EOL
@@ -16,8 +17,8 @@
 %type<sym> assignment
 
 
-%left '-' '+'
-%left '*' '/'
+// %left '-' '+'
+// %left '*' '/'
 /* rules */
 %%
 
@@ -33,7 +34,7 @@ assignment:
     id "=" exp { printf("--valid\n"); };
 
 exp: 
-    exp op id { printf("--valid\n");}
+    exp op id{ printf("--valid\n");}
 |    id { printf("--valid\n"); };
 
 %%
@@ -44,7 +45,7 @@ int main() {
     return 0;
 }
 
-yyerror(char* s) {
-    printf("ERROR: %s\n", s);
-    return 0;
+int yyerror (char *msg) {
+  printf("ERROR: %s: '%s'\n", msg, yylval.sym);
+  return 0;
 }

@@ -7,18 +7,34 @@
 
 %% 
 [0-9]+ {
+    yylval.sym = yytext;
     return id;
 }
 
-[a-zA-Z] {return id;}
+[a-zA-Z] {
+    yylval.sym = yytext;
+    return id;
+}
 
-[a-zA-Z][a-zA-Z0-9]+ {return id;}
+[A-Za-z0-9_]+ {
+    yylval.sym = yytext;
+    return id;
+}
 
-'+' {return op;}
+'+' {
+    yylval.sym = yytext;
+    return op;
+}
 
-'-' {return op;}
+'-' {
+    yylval.sym = yytext;
+    return op;
+}
 
-'*' {return op;}
+'*' {
+    yylval.sym = yytext;
+    return op;
+}
 
 
 \n {
@@ -29,5 +45,6 @@
 %%
 
 yywrap(){}
+
 
 
