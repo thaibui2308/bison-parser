@@ -1,51 +1,54 @@
-/*** Definition section ***/
 %{
-    
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#define YYSTYPE char*
 %}
 
-%union {
-    char* sym;
-    int fn;
-    double d;
+%token NUMBER
+%token PLUS MINUS TIMES DIVIDE POWER EQUAL
+%token LEFT RIGHT
+%token END
+%token IDENTIFIER
+
+%left PLUS MINUS
+%left TIMES DIVIDE
+%left NEG
+%right POWER
+
+%start Input
+%%
+
+Input:
+    
+     | Input Line
+;
+
+Line:
+     END
+     | Expression END { printf("--valid\n"); }
+;
+
+Expression:
+    IDENTIFIER 
+| Expression PLUS Expression 
+| Expression EQUAL Expression
+| Expression MINUS Expression 
+| Expression TIMES Expression 
+| Expression DIVIDE Expression 
+| LEFT Expression RIGHT 
+;
+
+%%
+
+extern char* yytext;
+int yyerror(char *s) {
+  printf("%s: %s\n", s,yytext);
 }
-
-%token EOL
-%token<sym> id
-%token<operator> op
-
-%type<sym> exp
-%type<sym> assignment
-
-
-// %left '-' '+'
-// %left '*' '/'
-/* rules */
-%%
-
-stm_list:
-    stm EOL
-|   stm_list stm EOL;
-
-stm: 
-    assignment
-|   exp;
-
-assignment: 
-    id "=" exp { printf("--valid\n"); };
-
-exp: 
-    exp op id{ printf("--valid\n");}
-|    id { printf("--valid\n"); };
-
-%%
 
 int main() {
-    yyparse();
-
-    return 0;
-}
-
-int yyerror (char *msg) {
-  printf("ERROR: %s: '%s'\n", msg, yylval.sym);
-  return 0;
+  if (yyparse())
+     fprintf(stderr, "Successful parsing.\n");
+  else
+     fprintf(stderr, "error found.\n");
 }

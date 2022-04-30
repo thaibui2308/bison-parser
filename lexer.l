@@ -1,50 +1,37 @@
 
 %{
-    #include "parser.tab.h"
+#define YYSTYPE double
+#include "parser.tab.h"
+#include <stdlib.h>
 %}
 
-/*rules */
+id [a-zA-Z1-9]+
+white [ \t]+
+digit [0-9]
+integer {digit}+
+exponent [eE][+-]?{integer}
+real {integer}("."{integer})?{exponent}?
 
-%% 
-[0-9]+ {
-    yylval.sym = yytext;
-    return id;
+%%
+{white} { }
+{real} {  
+ return IDENTIFIER;
 }
 
-[a-zA-Z] {
-    yylval.sym = yytext;
-    return id;
+{id} {
+    return IDENTIFIER;
 }
 
-[A-Za-z0-9_]+ {
-    yylval.sym = yytext;
-    return id;
-}
+"+" return PLUS;
+"-" return MINUS;
+"*" return TIMES;
+"/" return DIVIDE;
+"=" return EQUAL;
+"^" return POWER;
+"(" return LEFT;
+")" return RIGHT;
+"\n" return END;
 
-'+' {
-    yylval.sym = yytext;
-    return op;
-}
-
-'-' {
-    yylval.sym = yytext;
-    return op;
-}
-
-'*' {
-    yylval.sym = yytext;
-    return op;
-}
-
-
-\n {
-    return EOL;
-}
-
-. {}
 %%
 
 yywrap(){}
-
-
-
