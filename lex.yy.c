@@ -619,88 +619,125 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 17 "lexer.l"
-{ }
+{ 
+    
+}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 18 "lexer.l"
+#line 20 "lexer.l"
 {  
- return NUMBER;
+   
+    return NUMBER;
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "lexer.l"
+#line 25 "lexer.l"
 {
+    
     return IDENTIFIER;
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 26 "lexer.l"
-return PLUS;
+#line 30 "lexer.l"
+{
+    
+    return PLUS;
+}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 27 "lexer.l"
-return MINUS;
+#line 34 "lexer.l"
+{
+   
+    return MINUS;
+}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 28 "lexer.l"
-return TIMES;
+#line 38 "lexer.l"
+{
+    
+    return TIMES;
+}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 29 "lexer.l"
-return DIVIDE;
+#line 42 "lexer.l"
+{
+    
+    return DIVIDE;
+}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 30 "lexer.l"
-return EQUAL;
+#line 46 "lexer.l"
+{
+    
+    return EQUAL;
+}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 31 "lexer.l"
+#line 50 "lexer.l"
 return POWER;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 32 "lexer.l"
-return MOD;
+#line 51 "lexer.l"
+{
+    
+    return MOD;
+}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 33 "lexer.l"
-return LEFT;
+#line 55 "lexer.l"
+{
+    
+    return LEFT;
+}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 34 "lexer.l"
-return RIGHT;
+#line 59 "lexer.l"
+{
+    
+    return RIGHT;
+} 
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 35 "lexer.l"
-return END;
+#line 63 "lexer.l"
+{
+    
+    return END;
+}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "lexer.l"
-return COLON;
+#line 67 "lexer.l"
+{
+    
+    return COLON;
+}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "lexer.l"
-return ERROR;
+#line 71 "lexer.l"
+{
+    
+    return ERROR;
+}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 38 "lexer.l"
+#line 75 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 704 "lex.yy.c"
+#line 741 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1586,7 +1623,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 38 "lexer.l"
+#line 75 "lexer.l"
 
 
 yywrap(){}

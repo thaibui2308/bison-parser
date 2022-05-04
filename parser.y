@@ -28,15 +28,16 @@ Input:
 
 Line:
      END
-     | Expression END { printf("--valid\n"); }
-     | Expression COLON END  { printf("--valid\n"); }
+     | Expression END { printf(" --valid\n"); }
+     | Expression COLON END  { printf(" --valid\n"); }
+     | error END {yyerrok;}
 ;
 
 Expression:
     IDENTIFIER 
 | NUMBER
 | Expression PLUS Expression 
-| Expression EQUAL Expression
+| IDENTIFIER EQUAL Expression
 | Expression MINUS Expression 
 | Expression TIMES Expression 
 | Expression DIVIDE Expression 
@@ -49,8 +50,9 @@ Expression:
 extern char* yytext;
 extern FILE *yyin;
 
+
 int yyerror(char *s) {
-  printf("%s: %s\n", s,yytext);
+  printf(" --invalid lexeme: %s\n",yytext);
 }
 
 int main(int argc, char *argv[]) {

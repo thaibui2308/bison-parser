@@ -14,27 +14,64 @@ exponent [eE][+-]?{integer}
 real {integer}("."{integer})?{exponent}?
 
 %%
-{white} { }
+{white} { 
+    
+}
 {real} {  
- return NUMBER;
+   
+    return NUMBER;
 }
 
 {id} {
+    
     return IDENTIFIER;
 }
 
-"+" return PLUS;
-"-" return MINUS;
-"*" return TIMES;
-"/" return DIVIDE;
-"=" return EQUAL;
+"+" {
+    
+    return PLUS;
+}
+"-" {
+   
+    return MINUS;
+}
+"*" {
+    
+    return TIMES;
+}
+"/" {
+    
+    return DIVIDE;
+}
+"=" {
+    
+    return EQUAL;
+}
 "^" return POWER;
-"%" return MOD;
-"(" return LEFT;
-")" return RIGHT;
-"\n" return END;
-";" return COLON;
-. return ERROR;
+"%" {
+    
+    return MOD;
+}
+"(" {
+    
+    return LEFT;
+}
+")" {
+    
+    return RIGHT;
+} 
+"\n" {
+    
+    return END;
+}
+";"  {
+    
+    return COLON;
+}
+. {
+    
+    return ERROR;
+}
 %%
 
 yywrap(){}
