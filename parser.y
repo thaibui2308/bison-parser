@@ -11,6 +11,7 @@
 %token END
 %token IDENTIFIER
 %token ERROR
+%token COLON
 
 %left PLUS MINUS
 %left TIMES DIVIDE
@@ -28,6 +29,7 @@ Input:
 Line:
      END
      | Expression END { printf("--valid\n"); }
+     | Expression COLON END  { printf("--valid\n"); }
 ;
 
 Expression:

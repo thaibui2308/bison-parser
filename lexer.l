@@ -32,6 +32,7 @@ real {integer}("."{integer})?{exponent}?
 "(" return LEFT;
 ")" return RIGHT;
 "\n" return END;
+";" return COLON;
 . return ERROR;
 %%
 

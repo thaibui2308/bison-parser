@@ -51,7 +51,8 @@
      END = 267,
      IDENTIFIER = 268,
      ERROR = 269,
-     NEG = 270
+     COLON = 270,
+     NEG = 271
    };
 #endif
 
