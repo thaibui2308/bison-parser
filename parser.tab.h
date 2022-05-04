@@ -46,13 +46,14 @@
      DIVIDE = 262,
      POWER = 263,
      EQUAL = 264,
-     LEFT = 265,
-     RIGHT = 266,
-     END = 267,
-     IDENTIFIER = 268,
-     ERROR = 269,
-     COLON = 270,
-     NEG = 271
+     MOD = 265,
+     LEFT = 266,
+     RIGHT = 267,
+     END = 268,
+     IDENTIFIER = 269,
+     ERROR = 270,
+     COLON = 271,
+     NEG = 272
    };
 #endif
 

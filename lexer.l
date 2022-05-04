@@ -29,6 +29,7 @@ real {integer}("."{integer})?{exponent}?
 "/" return DIVIDE;
 "=" return EQUAL;
 "^" return POWER;
+"%" return MOD;
 "(" return LEFT;
 ")" return RIGHT;
 "\n" return END;

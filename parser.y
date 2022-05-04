@@ -6,7 +6,7 @@
 %}
 
 %token NUMBER
-%token PLUS MINUS TIMES DIVIDE POWER EQUAL
+%token PLUS MINUS TIMES DIVIDE POWER EQUAL MOD
 %token LEFT RIGHT
 %token END
 %token IDENTIFIER
@@ -40,19 +40,30 @@ Expression:
 | Expression MINUS Expression 
 | Expression TIMES Expression 
 | Expression DIVIDE Expression 
+| Expression MOD Expression
 | LEFT Expression RIGHT 
 ;
 
 %%
 
 extern char* yytext;
+extern FILE *yyin;
+
 int yyerror(char *s) {
   printf("%s: %s\n", s,yytext);
 }
 
-int main() {
-  if (yyparse())
-     fprintf(stderr, "Successful parsing.\n");
-  else
-     fprintf(stderr, "error found.\n");
+int main(int argc, char *argv[]) {
+  if (argc == 1) {
+       printf("ERROR: no file specified.\n");
+       exit(0);
+  } 
+  if (argc == 2) {
+       yyin = fopen(argv[1], "r");
+       yyparse();
+  }
+  if (argc == 3) {
+       printf("ERROR: too many arguments.\n");
+       exit(0);
+  }
 }
