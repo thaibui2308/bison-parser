@@ -47,7 +47,7 @@ real {integer}("."{integer})?{exponent}?
     
     return EQUAL;
 }
-"^" return POWER;
+
 "%" {
     
     return MOD;

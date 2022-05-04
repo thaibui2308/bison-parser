@@ -6,7 +6,7 @@
 %}
 
 %token NUMBER
-%token PLUS MINUS TIMES DIVIDE POWER EQUAL MOD
+%token PLUS MINUS TIMES DIVIDE EQUAL MOD
 %token LEFT RIGHT
 %token END
 %token IDENTIFIER
@@ -28,16 +28,19 @@ Input:
 
 Line:
      END
-     | Expression END { printf(" --valid\n"); }
-     | Expression COLON END  { printf(" --valid\n"); }
+     | Statement END { printf(" --valid\n"); }
+     | Statement COLON END  { printf(" --valid\n"); }
      | error END {yyerrok;}
+;
+
+Statement:
+     IDENTIFIER EQUAL Expression
 ;
 
 Expression:
     IDENTIFIER 
 | NUMBER
 | Expression PLUS Expression 
-| IDENTIFIER EQUAL Expression
 | Expression MINUS Expression 
 | Expression TIMES Expression 
 | Expression DIVIDE Expression 
