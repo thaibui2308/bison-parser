@@ -1,8 +1,14 @@
 %{
 #include <math.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #define YYSTYPE char*
+
+FILE *fptr = NULL;
+int count = 0;
+char line[128][128];
+char fname[20];
 %}
 
 %token NUMBER
@@ -28,8 +34,13 @@ Input:
 
 Line:
      END
-     | Statement END { printf(" --valid\n"); }
-     | Statement COLON END  { printf(" --valid\n"); }
+     | Statement COLON END  { 
+          int i = 0;
+          printf("%s",line[count]);
+          for (i=0; i<55-strlen(line[count]);i++)
+          printf(" ");
+          printf("-- valid\n");
+          count++; }
      | error END {yyerrok;}
 ;
 
@@ -55,7 +66,17 @@ extern FILE *yyin;
 
 
 int yyerror(char *s) {
-  printf(" --invalid lexeme: %s\n",yytext);
+     int i = 0;
+     printf("%s",line[count]);
+     for (i=0; i<55-strlen(line[count]);i++)
+          printf(" ");
+     
+     if (*yytext == '\n') {
+          printf("-- invalid: invalid assignment\n");
+     }
+     else 
+          printf("-- invalid lexeme: %s\n", yytext);
+     count++;
 }
 
 int main(int argc, char *argv[]) {
@@ -64,8 +85,25 @@ int main(int argc, char *argv[]) {
        exit(0);
   } 
   if (argc == 2) {
+       fptr = fopen(argv[1], "r");
        yyin = fopen(argv[1], "r");
-       yyparse();
+       if (yyin == NULL) {
+            printf("ERROR: file not found.\n");
+            exit(0);
+       }
+
+     int i =0;
+     int total = 0;
+
+     while (fgets(line[i], 128, fptr)) {
+          line[i][strlen(line[i]) - 1] = '\0';
+          i++;
+     }
+     total = i;
+
+     
+     yyparse();
+       
   }
   if (argc == 3) {
        printf("ERROR: too many arguments.\n");
