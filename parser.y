@@ -41,6 +41,14 @@ Line:
           printf(" ");
           printf("-- valid\n");
           count++; }
+     | Expression END {
+          int i = 0;
+          printf("%s",line[count]);
+          for (i=0; i<55-strlen(line[count]);i++)
+          printf(" ");
+          printf("-- valid\n");
+          count++;
+     }
      | error END {yyerrok;}
 ;
 
