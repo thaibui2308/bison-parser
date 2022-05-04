@@ -10,6 +10,7 @@
 %token LEFT RIGHT
 %token END
 %token IDENTIFIER
+%token ERROR
 
 %left PLUS MINUS
 %left TIMES DIVIDE
@@ -31,6 +32,7 @@ Line:
 
 Expression:
     IDENTIFIER 
+| NUMBER
 | Expression PLUS Expression 
 | Expression EQUAL Expression
 | Expression MINUS Expression 

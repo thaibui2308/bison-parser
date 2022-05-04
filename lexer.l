@@ -5,7 +5,8 @@
 #include <stdlib.h>
 %}
 
-id [a-zA-Z1-9]+
+id [a-zA-Z][a-zA-Z0-9]*
+number [0-9][0-9]*
 white [ \t]+
 digit [0-9]
 integer {digit}+
@@ -15,7 +16,7 @@ real {integer}("."{integer})?{exponent}?
 %%
 {white} { }
 {real} {  
- return IDENTIFIER;
+ return NUMBER;
 }
 
 {id} {
@@ -31,7 +32,7 @@ real {integer}("."{integer})?{exponent}?
 "(" return LEFT;
 ")" return RIGHT;
 "\n" return END;
-
+. return ERROR;
 %%
 
 yywrap(){}

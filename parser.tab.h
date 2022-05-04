@@ -50,7 +50,8 @@
      RIGHT = 266,
      END = 267,
      IDENTIFIER = 268,
-     NEG = 269
+     ERROR = 269,
+     NEG = 270
    };
 #endif
 
